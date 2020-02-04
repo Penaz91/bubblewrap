@@ -1,5 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <time.h>
+
+float getRandFloat(const float& min, const float& max){
+    float uniform = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+    float diff = max - min;
+    return uniform * diff + min;
+}
 
 void setPoppedTexture(sf::Vertex* quad){
     quad[0].texCoords = sf::Vector2f(0, 0);
@@ -39,9 +46,12 @@ void setBubbleTextures(sf::VertexArray* bubbles, const unsigned int& size, bool*
 }
 
 int main(){
+    // Seed Randomizer
+    srand(time(nullptr));
     // Variables
     sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(600,600),
                                                     "Bubble Wrap Simulator!");
+    window->setFramerateLimit(30);
     sf::Event event;
     bool running = true;
     const int size = 10;
@@ -89,6 +99,7 @@ int main(){
                         poppedArr[currentTile] = true;
                         sf::Vertex* quad = &(*bubbles)[currentTile * 4];
                         setPoppedTexture(quad);
+                        pop->setPitch(getRandFloat(0.8f, 1.6f));
                         pop->play();
                     }
                 }
