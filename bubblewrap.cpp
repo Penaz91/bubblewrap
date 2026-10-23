@@ -64,13 +64,6 @@ void setUnpoppedTexture(sf::Vertex* trie1, sf::Vertex* trie2) {
     trie2[2].texCoords = sf::Vector2f(120, 0);
 }
 
-void setUnpoppedTexture(sf::Vertex* quad) {
-    quad[0].texCoords = sf::Vector2f(61, 0);
-    quad[1].texCoords = sf::Vector2f(120, 0);
-    quad[2].texCoords = sf::Vector2f(120, 60);
-    quad[3].texCoords = sf::Vector2f(61, 60);
-}
-
 /**
  * @brief Sets the array of popped bubbles to all false.
  *
